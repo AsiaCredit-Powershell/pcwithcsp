@@ -18,13 +18,9 @@ $TaskName1 = "CPVerify"
 $TaskName2 = "PC_Reboot"
 $ConfigName1 = $TaskName1 + ".xml"
 $ConfigName2 = $TaskName2 + ".xml"
-$UninstallFile = "$ConfigPath\ConnectWiseControl.ClientSetupAsia.msi"
-$UninstallLog = "C:\uninstalSC.txt"
 $DirCSP = "C:\Program Files\Crypto Pro\CSP" 
 $User = "ilccredits\admin"
 $Pass = "P@rabola-2ilc"
-$UninstallErrorMSG = "Скринконнект на ПК $env:COMPUTERNAME не обнаружен."
-
 
 # Проводим проверку наличия CSP на ПК 
 $CSP = Get-ChildItem -Path $DirCSP 
@@ -51,5 +47,9 @@ Switch ($SwitchFlag) {
             }
        }
     
-    1 {break}
+    # А если вдруг - КСП исчез - тогда отключаем задания 
+    1 {
+        Unregister-ScheduledTask -TaskName $TaskName1 -Confirm $false
+        Unregister-ScheduledTask -TaskName $TaskName2 -Confirm $false
     }
+}
