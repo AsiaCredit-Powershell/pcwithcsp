@@ -24,7 +24,8 @@ $Pass = "P@rabola-2ilc"
 
 # Проводим проверку наличия CSP на ПК 
 $CSP = Get-ChildItem -Path $DirCSP 
-    if ($null -eq $CSP) {
+$Serv = (Get-WmiObject -class Win32_OperatingSystem).Caption 
+    if ($null -eq $CSP -or $Serv -like "*Server*" -or $Serv -like "*Сервер*") {
         $SwitchFlag = '1'
     }
     else {

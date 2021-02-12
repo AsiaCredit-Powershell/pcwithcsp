@@ -1,4 +1,4 @@
-<#
+﻿<#
     Скрипт необходимый для удаления СК. 
     Работает так: ищется по пути C:\Program Files (x86)\ каталог с наименованием 'screencon*'
     Если он находится, то вызываем MSI "$ConfigPath\ConnectWiseControl.ClientSetupAsia.msi" для удаления
