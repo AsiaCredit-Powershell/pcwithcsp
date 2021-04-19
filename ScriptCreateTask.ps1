@@ -13,7 +13,7 @@
 #>
 
 # Назначаем переменные
-$ConfigPath = '\\ilc-fileserv\IT\GPO\PCwithCSP'
+$ConfigPath = '\\ilccredits\it\GPO\PCwithCSP'
 $TaskName1 = "CPVerify"
 $TaskName2 = "PC_Reboot"
 $ConfigName1 = $TaskName1 + ".xml"
@@ -50,7 +50,7 @@ Switch ($SwitchFlag) {
     
     # А если вдруг - КСП исчез - тогда отключаем задания 
     1 {
-        Unregister-ScheduledTask -TaskName $TaskName1 -Confirm $false
-        Unregister-ScheduledTask -TaskName $TaskName2 -Confirm $false
+        Disable-ScheduledTask -TaskName $TaskName1 -Confirm $false 
+        Disable-ScheduledTask -TaskName $TaskName2 -Confirm $false
     }
 }
